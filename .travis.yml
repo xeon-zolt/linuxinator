@@ -8,5 +8,5 @@ git:
   sudo: required
   
 script:
-  - ./build1.sh |& tee log.txt
+  - ./build.sh |& tee log.txt
   - ls
