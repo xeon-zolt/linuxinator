@@ -1,0 +1,12 @@
+dist: trusty
+language: generic
+
+
+git:
+  depth: 1
+  
+  sudo: required
+  
+script:
+  - ./build1.sh |& tee log.txt
+  - ls
