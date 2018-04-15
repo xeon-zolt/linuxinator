@@ -1,12 +1,21 @@
 dist: trusty
 language: generic
 
-
 git:
   depth: 1
-  
-  sudo: required
+ 
+sudo: required
   
 script:
   - ./Download.sh |& tee log.txt
   - ls
+
+before_deploy:
+
+
+after_deploy:
+  - cd mail-scripts && python Mailinator/success-mail.py
+  
+after_failure:
+  - cd mail-scripts && mail-fail.py
+
