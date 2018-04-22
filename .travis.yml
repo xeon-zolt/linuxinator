@@ -21,8 +21,8 @@ deploy:
    script: curl --upload-file /home/travis/${image_name} https://transfer.sh/Linuxinator.iso
 
 after_deploy:
-  - cd mail-scripts && python success-mail.py
+  - cd Mailinator && python success-mail.py
   
 after_failure:
-  - cd mail-scripts && python mail-fail.py
+  - cd Mailinator && python mail-fail.py
 
