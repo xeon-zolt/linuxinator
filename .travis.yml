@@ -7,7 +7,7 @@ git:
 sudo: required
   
 script:
-  - bash build.sh |& tee log.txt
+  - sudo bash build.sh |& tee log.txt
   - ls
 
 before_deploy:
