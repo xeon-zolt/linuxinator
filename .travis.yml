@@ -11,11 +11,18 @@ script:
   - ls
 
 before_deploy:
+  - sudo rm linuxinator.iso
+  - export image_name="`echo *.iso`"
+  - cat *.iso > "/home/travis/${image_name}"
+  - curl --upload-file /home/travis/${image_name} https://transfer.sh/LinuxInator.iso
 
+deploy:
+   provider: script
+   script: curl --upload-file /home/travis/${image_name} https://transfer.sh/Linuxinator.iso
 
 after_deploy:
-  - cd mail-scripts && python Mailinator/success-mail.py
+  - cd mail-scripts && python success-mail.py
   
 after_failure:
-  - cd mail-scripts && mail-fail.py
+  - cd mail-scripts && python mail-fail.py
 
