@@ -19,7 +19,6 @@ before_deploy:
 deploy:
    provider: script
    script: curl --upload-file /home/travis/${image_name} https://transfer.sh/Linuxinator.iso
- curl -F "file=@/home/travis/${image_name}" https://file.io/?expires=1w | jq '.link'
 
 after_deploy:
   - cd Mailinator && python success-mail.py
