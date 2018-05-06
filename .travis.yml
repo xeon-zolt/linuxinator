@@ -5,7 +5,12 @@ git:
   depth: 1
  
 sudo: required
-  
+
+addons:
+  apt:
+    packages:
+    - jq
+
 script:
   - sudo bash build.sh |& tee log.txt
   - ls
@@ -14,11 +19,11 @@ before_deploy:
   - sudo rm linuxinator.iso
   - export image_name="`echo *.iso`"
   - cat *.iso > "/home/travis/${image_name}"
-  - curl --upload-file /home/travis/${image_name} https://transfer.sh/LinuxInator.iso
 
 deploy:
    provider: script
    script: curl --upload-file /home/travis/${image_name} https://transfer.sh/Linuxinator.iso
+ curl -F "file=@/home/travis/${image_name}" https://file.io/?expires=1w | jq '.link'
 
 after_deploy:
   - cd Mailinator && python success-mail.py
