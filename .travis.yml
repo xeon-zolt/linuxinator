@@ -6,12 +6,8 @@ git:
  
 sudo: required
 
-addons:
-  apt:
-    packages:
-    - jq
-
 script:
+  - sudo apt-get install jq
   - sudo bash build.sh |& tee log.txt
   - ls
 
